@@ -1,0 +1,23 @@
+{
+  "name": "dsa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "search:dev": "nodemon searching/index.ts -e ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-mostafa/dsa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/i-mostafa/dsa/issues"
+  },
+  "homepage": "https://github.com/i-mostafa/dsa#readme",
+  "devDependencies": {
+    "@types/node": "^18.6.5"
+  }
+}
