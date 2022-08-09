@@ -1,5 +1,6 @@
 import { DataGenerator } from "../data";
 import { Logger } from "../utils/logger";
+import { binarySearch, iterativeBinarySearch } from "./binarySearch";
 import {
   biDirectionalLinearSearch,
   linearSearch,
@@ -7,7 +8,7 @@ import {
 } from "./linearSearch";
 
 const bigArray = DataGenerator.getArrData({ size: 5000 });
-
+const sortedBigArray = DataGenerator.getSortedArrData({ size: 5000 });
 const table = [
   {
     name: "linearSearch",
@@ -20,6 +21,14 @@ const table = [
   {
     name: "recursiveLinearSearch",
     func: () => recursiveLinearSearch(bigArray, 6),
+  },
+  {
+    name: "binarySearch",
+    func: () => binarySearch(sortedBigArray, 100),
+  },
+  {
+    name: "iterativeBinarySearch",
+    func: () => iterativeBinarySearch(sortedBigArray, 100),
   },
 ];
 Logger.table(table);
