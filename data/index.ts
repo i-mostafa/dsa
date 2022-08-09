@@ -3,6 +3,7 @@ import { join } from "path";
 
 enum Files {
   ARRAY = "arr.json",
+  SORTED_ARR = "sortedArr.json",
 }
 
 const defaults = {
@@ -31,6 +32,7 @@ export class FileHandler {
 }
 export class DataGenerator {
   static arrData: number[];
+  static sortedArrData: number[];
 
   static getArrData({ isNew = false, size = defaults.size } = {}): number[] {
     let arr: number[] | null = this.cachedArr;
@@ -41,6 +43,20 @@ export class DataGenerator {
     this.cachedArr = arr || this.generateRandomNumbers({ size });
 
     return this.cachedArr;
+  }
+
+  static getSortedArrData({
+    isNew = false,
+    size = defaults.size,
+  } = {}): number[] {
+    let arr: number[] | null = this.cachedSortedArr;
+    if (isNew) arr = this.generateSortedArr({ size });
+
+    if (arr?.length < size) arr = null;
+
+    this.cachedSortedArr = arr || this.generateSortedArr({ size });
+
+    return this.cachedSortedArr;
   }
 
   private static generateRandomNumber({
@@ -59,12 +75,24 @@ export class DataGenerator {
     );
   }
 
+  private static generateSortedArr({ size = defaults.size } = {}) {
+    return [...Array(size)].map((_, i) => i);
+  }
+
   static get cachedArr(): number[] {
     return this.arrData || FileHandler.readJson(Files.ARRAY);
+  }
+  static get cachedSortedArr(): number[] {
+    return this.sortedArrData || FileHandler.readJson(Files.SORTED_ARR);
   }
 
   static set cachedArr(arr) {
     this.arrData = arr;
     FileHandler.writeJson(Files.ARRAY, arr);
+  }
+
+  static set cachedSortedArr(arr) {
+    this.sortedArrData = arr;
+    FileHandler.writeJson(Files.SORTED_ARR, arr);
   }
 }
