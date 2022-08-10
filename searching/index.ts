@@ -2,6 +2,7 @@ import { DataGenerator } from "../data";
 import { Logger } from "../utils/logger";
 import { binarySearch, iterativeBinarySearch } from "./binarySearch";
 import { exponentialSearch } from "./exponentialSearch";
+import { interpolationSearch } from "./interpolationSearch";
 import { jumpSearch } from "./jumpSearch";
 import {
   biDirectionalLinearSearch,
@@ -62,6 +63,10 @@ const sortedTable = [
   {
     name: "ternarySearch",
     func: () => ternarySearch(sortedBigArray, target),
+  },
+  {
+    name: "interpolationSearch",
+    func: () => interpolationSearch(sortedBigArray, target),
   },
 ];
 Logger.table(unsortedTable);
