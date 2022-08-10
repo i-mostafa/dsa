@@ -11,7 +11,5 @@ export const exponentialSearch = (arr: number[], target: number) => {
   if (arr[i] === target) return i;
   if (i === arr.length) return -1;
 
-  console.log(prev, i, target, arr.slice(prev, i));
-
   return binarySearch(arr.slice(prev, i), target, prev);
 };

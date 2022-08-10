@@ -8,6 +8,7 @@ import {
   linearSearch,
   recursiveLinearSearch,
 } from "./linearSearch";
+import { ternarySearch } from "./ternarySearch";
 
 const bigArray = DataGenerator.getArrData({ size: 5000 });
 const sortedBigArray = DataGenerator.getSortedArrData({ size: 5000 });
@@ -31,6 +32,18 @@ const unsortedTable = [
 
 const sortedTable = [
   {
+    name: "linearSearch",
+    func: () => linearSearch(sortedBigArray, target),
+  },
+  {
+    name: "biDirectionalLinearSearch",
+    func: () => biDirectionalLinearSearch(sortedBigArray, target),
+  },
+  {
+    name: "recursiveLinearSearch",
+    func: () => recursiveLinearSearch(sortedBigArray, target),
+  },
+  {
     name: "binarySearch",
     func: () => binarySearch(sortedBigArray, target),
   },
@@ -45,6 +58,10 @@ const sortedTable = [
   {
     name: "exponentialSearch",
     func: () => exponentialSearch(sortedBigArray, target),
+  },
+  {
+    name: "ternarySearch",
+    func: () => ternarySearch(sortedBigArray, target),
   },
 ];
 Logger.table(unsortedTable);

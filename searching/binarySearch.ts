@@ -4,7 +4,7 @@ export const binarySearch = (
   offset = 0
 ): number => {
   if (arr.length === 0) return -1;
-  if (arr.length === 1) return arr[0] === target ? target : -1;
+  if (arr.length === 1) return arr[0] === target ? offset : -1;
 
   const midIdx = Math.ceil(arr.length / 2);
 
@@ -17,7 +17,7 @@ export const binarySearch = (
 
 export const iterativeBinarySearch = (arr: number[], target: number) => {
   if (arr.length === 0) return -1;
-  if (arr.length === 1) return arr[0] === target ? target : -1;
+  if (arr.length === 1) return arr[0] === target ? 0 : -1;
 
   let left = 0;
   let right = arr.length - 1;
