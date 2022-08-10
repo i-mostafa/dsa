@@ -3,9 +3,11 @@ export const binarySearch = (
   target: number,
   offset = 0
 ): number => {
-  if (arr.length === 0 || (arr.length === 1 && arr[0] !== target)) return -1;
+  if (arr.length === 0) return -1;
+  if (arr.length === 1) return arr[0] === target ? target : -1;
 
   const midIdx = Math.ceil(arr.length / 2);
+
   if (arr[midIdx] === target) return midIdx + offset;
 
   if (arr[midIdx] > target)
@@ -14,7 +16,8 @@ export const binarySearch = (
 };
 
 export const iterativeBinarySearch = (arr: number[], target: number) => {
-  if (arr.length === 0 || (arr.length === 1 && arr[0] !== target)) return -1;
+  if (arr.length === 0) return -1;
+  if (arr.length === 1) return arr[0] === target ? target : -1;
 
   let left = 0;
   let right = arr.length - 1;

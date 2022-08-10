@@ -1,6 +1,7 @@
 import { DataGenerator } from "../data";
 import { Logger } from "../utils/logger";
 import { binarySearch, iterativeBinarySearch } from "./binarySearch";
+import { exponentialSearch } from "./exponentialSearch";
 import { jumpSearch } from "./jumpSearch";
 import {
   biDirectionalLinearSearch,
@@ -40,6 +41,10 @@ const sortedTable = [
   {
     name: "jumpSearch",
     func: () => jumpSearch(sortedBigArray, target),
+  },
+  {
+    name: "exponentialSearch",
+    func: () => exponentialSearch(sortedBigArray, target),
   },
 ];
 Logger.table(unsortedTable);
