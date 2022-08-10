@@ -1,6 +1,7 @@
 import { DataGenerator } from "../data";
 import { Logger } from "../utils/logger";
 import { binarySearch, iterativeBinarySearch } from "./binarySearch";
+import { jumpSearch } from "./jumpSearch";
 import {
   biDirectionalLinearSearch,
   linearSearch,
@@ -9,26 +10,37 @@ import {
 
 const bigArray = DataGenerator.getArrData({ size: 5000 });
 const sortedBigArray = DataGenerator.getSortedArrData({ size: 5000 });
-const table = [
+
+const target = 100;
+
+const unsortedTable = [
   {
     name: "linearSearch",
-    func: () => linearSearch(bigArray, 6),
+    func: () => linearSearch(bigArray, target),
   },
   {
     name: "biDirectionalLinearSearch",
-    func: () => biDirectionalLinearSearch(bigArray, 6),
+    func: () => biDirectionalLinearSearch(bigArray, target),
   },
   {
     name: "recursiveLinearSearch",
-    func: () => recursiveLinearSearch(bigArray, 6),
+    func: () => recursiveLinearSearch(bigArray, target),
   },
+];
+
+const sortedTable = [
   {
     name: "binarySearch",
-    func: () => binarySearch(sortedBigArray, 100),
+    func: () => binarySearch(sortedBigArray, target),
   },
   {
     name: "iterativeBinarySearch",
-    func: () => iterativeBinarySearch(sortedBigArray, 100),
+    func: () => iterativeBinarySearch(sortedBigArray, target),
+  },
+  {
+    name: "jumpSearch",
+    func: () => jumpSearch(sortedBigArray, target),
   },
 ];
-Logger.table(table);
+Logger.table(unsortedTable);
+Logger.table(sortedTable);
