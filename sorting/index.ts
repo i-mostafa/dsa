@@ -1,6 +1,7 @@
 import { DataGenerator } from "../data";
 import { isSorted } from "../utils/isSorted";
 import { Logger } from "../utils/logger";
+import { bubbleSort } from "./bubbleSort";
 import { insertionSort } from "./insertionSort";
 import { mergeSort } from "./mergeSort";
 import { quickSort } from "./quickSort";
@@ -19,6 +20,7 @@ const table = [
   toLogger(insertionSort),
   toLogger(mergeSort),
   toLogger(quickSort),
+  toLogger(bubbleSort),
 ];
 
 Logger.table(table);
