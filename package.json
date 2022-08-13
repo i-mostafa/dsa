@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "search:dev": "nodemon searching/index.ts -e ts",
-    "sort:dev": "nodemon sorting/index.ts -e ts"
+    "sort:dev": "nodemon sorting/index.ts -e ts",
+    "ds:dev": "nodemon dataStructures/index.ts -e ts"
   },
   "repository": {
     "type": "git",
