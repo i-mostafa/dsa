@@ -8,7 +8,7 @@ enum Files {
 
 const defaults = {
   randomStart: 0,
-  randomEnd: 1000,
+  randomEnd: 100000,
   size: 3000,
 };
 
@@ -38,7 +38,7 @@ export class DataGenerator {
     let arr: number[] | null = this.cachedArr;
     if (isNew) arr = this.generateRandomNumbers({ size });
 
-    if (arr?.length < size) arr = null;
+    if (arr?.length !== size) arr = null;
 
     this.cachedArr = arr || this.generateRandomNumbers({ size });
 

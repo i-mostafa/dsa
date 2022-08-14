@@ -7,6 +7,7 @@ import { heapSort } from "./heapSort";
 import { insertionSort } from "./insertionSort";
 import { mergeSort } from "./mergeSort";
 import { quickSort } from "./quickSort";
+import { radixSort } from "./radixSort";
 import { selectionSort } from "./selectionSort";
 
 const bigArray = DataGenerator.getArrData({ size: 5000 });
@@ -26,6 +27,7 @@ const table = [
   toLogger(heapSort),
   toLogger(countingSort),
   toLogger(countingSortWithHashMap),
+  toLogger(radixSort),
 ];
 
 Logger.table(table);
