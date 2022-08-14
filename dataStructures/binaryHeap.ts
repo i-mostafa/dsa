@@ -1,103 +1,65 @@
 export class BinaryHeap {
-  private data: number[] = [];
+  data: number[] = [];
 
-  get length() {
-    return this.data.length;
-  }
-
-  get heapArr() {
-    return this.data;
-  }
-
-  static leftChild(i: number) {
-    return i * 2 + 1;
-  }
-
-  static rightChild(i: number) {
-    return this.leftChild(i) + 1;
-  }
-
-  insert(num: number) {
-    this.data.push(num);
-    let i = this.data.length - 1;
-    this.heapifyUp(i);
-  }
-  delete(i: number) {
-    BinaryHeap.extractElement(this.data, i);
-  }
-
-  private heapifyUp(i: number) {
-    let parent = BinaryHeap.parent(i);
-    while (i > 0 && this.data[i] < this.data[parent]) {
-      BinaryHeap.swap(this.data, i, parent);
-      i = parent;
-      parent = BinaryHeap.parent(parent);
-    }
-
-    const leftChild = BinaryHeap.leftChild(i);
-    const rightChild = BinaryHeap.rightChild(i);
-    if (this.data[leftChild] > this.data[rightChild])
-      BinaryHeap.swap(this.data, rightChild, leftChild);
+  static buildHeap(
+    arr: number[],
+    check: (parent: number, child: number) => boolean
+  ) {
+    for (let i = this.parent(arr.length) - 1; i >= 0; i--)
+      this.heapify(arr, arr.length, i, check);
+    return arr;
   }
 
   static parent(i: number) {
-    if (i < 1) return 0;
     return Math.floor((i - 1) / 2);
   }
-  static heapifyDown(arr: number[], i: number) {
-    const { leftChildIdx, rightChildIdx } = this.heapifyNode(arr, i);
-    if (leftChildIdx < arr.length) this.heapifyDown(arr, leftChildIdx);
-    if (rightChildIdx < arr.length) this.heapifyDown(arr, rightChildIdx);
+
+  static leftChild(parentIdx: number) {
+    return 2 * parentIdx + 1;
   }
 
-  static heapifyNode(arr: number[], parentIdx: number) {
-    const leftChildIdx = BinaryHeap.leftChild(parentIdx);
-    const rightChildIdx = BinaryHeap.rightChild(parentIdx);
-
-    if (leftChildIdx < arr.length && arr[parentIdx] > arr[leftChildIdx])
-      this.swap(arr, parentIdx, leftChildIdx);
-    if (
-      leftChildIdx < arr.length &&
-      rightChildIdx < arr.length &&
-      arr[leftChildIdx] > arr[rightChildIdx]
-    )
-      this.swap(arr, leftChildIdx, rightChildIdx);
-    if (leftChildIdx < arr.length && arr[parentIdx] > arr[leftChildIdx])
-      this.swap(arr, parentIdx, leftChildIdx);
-    return { leftChildIdx, rightChildIdx, parentIdx };
+  static rightChild(parentIdx: number) {
+    return this.leftChild(parentIdx) + 1;
   }
 
-  static getValue(
+  static heapify(
     arr: number[],
-    indexes: number[],
-    tester: (last: number, curr: number) => boolean
+    size: number,
+    parentIdx: number,
+    check: (parent: number, child: number) => boolean
   ) {
-    const result = {
-      idx: indexes[0],
-      value: arr[indexes[0]],
-    };
-    for (let i = 1; i < indexes.length; i++) {
-      if (tester(result.value, arr[indexes[i]])) {
-        result.value = arr[indexes[i]];
-        result.idx = indexes[i];
-      }
+    const leftChildIdx = this.leftChild(parentIdx);
+    const rightChildIdx = this.rightChild(parentIdx);
+
+    let parentHolder = parentIdx;
+
+    if (leftChildIdx < size && check(arr[parentHolder], arr[leftChildIdx]))
+      parentHolder = leftChildIdx;
+    if (rightChildIdx < size && check(arr[parentHolder], arr[rightChildIdx]))
+      parentHolder = rightChildIdx;
+
+    if (parentIdx !== parentHolder) {
+      this.swap(arr, parentIdx, parentHolder);
+      this.heapify(arr, size, parentHolder, check);
     }
-    return result;
-  }
-
-  static extractElement(arr: number[], i: number) {
-    if (arr.length === 0 || i > arr.length) return;
-    const element = arr[i];
-    const lastElement = arr.pop() as number;
-    arr[i] = lastElement;
-
-    BinaryHeap.heapifyDown(arr, this.parent(i));
-    return element;
   }
 
   static swap(arr: number[], i: number, j: number) {
     const temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
+  }
+
+  static sort(arr: number[], order: "ASC" | "DESC" = "ASC") {
+    const check = (parent: number, child: number) =>
+      order === "DESC" ? parent > child : parent < child;
+
+    this.buildHeap(arr, check);
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+      this.swap(arr, i, 0);
+      this.heapify(arr, i, 0, check);
+    }
+    return arr;
   }
 }
