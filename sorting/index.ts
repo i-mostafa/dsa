@@ -6,6 +6,7 @@ import { countingSort, countingSortWithHashMap } from "./countingSort";
 import { heapSort } from "./heapSort";
 import { insertionSort } from "./insertionSort";
 import { mergeSort } from "./mergeSort";
+import { pigeonholeSort } from "./pigeonholeSort";
 import { quickSort } from "./quickSort";
 import { radixSort } from "./radixSort";
 import { selectionSort } from "./selectionSort";
@@ -28,6 +29,7 @@ const table = [
   toLogger(countingSort),
   toLogger(countingSortWithHashMap),
   toLogger(radixSort),
+  toLogger(pigeonholeSort),
 ];
 
 Logger.table(table);
