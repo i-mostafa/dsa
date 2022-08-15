@@ -2,6 +2,7 @@ import { DataGenerator } from "../data";
 import { isSorted } from "../utils/isSorted";
 import { Logger } from "../utils/logger";
 import { bubbleSort } from "./bubbleSort";
+import { bucketSort } from "./bucketSort";
 import { countingSort, countingSortWithHashMap } from "./countingSort";
 import { heapSort } from "./heapSort";
 import { insertionSort } from "./insertionSort";
@@ -30,6 +31,7 @@ const table = [
   toLogger(countingSortWithHashMap),
   toLogger(radixSort),
   toLogger(pigeonholeSort),
+  toLogger(bucketSort),
 ];
 
 Logger.table(table);
