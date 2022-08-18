@@ -3,6 +3,7 @@ import { isSorted } from "../utils/isSorted";
 import { Logger } from "../utils/logger";
 import { bubbleSort } from "./bubbleSort";
 import { bucketSort } from "./bucketSort";
+import { combSort } from "./combSort";
 import { countingSort, countingSortWithHashMap } from "./countingSort";
 import { heapSort } from "./heapSort";
 import { insertionSort } from "./insertionSort";
@@ -35,6 +36,7 @@ const table = [
   toLogger(bucketSort),
   toLogger(shellSort),
   toLogger(shellSort2),
+  toLogger(combSort),
 ];
 
 Logger.table(table);
