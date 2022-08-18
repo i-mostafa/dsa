@@ -11,6 +11,7 @@ import { pigeonholeSort } from "./pigeonholeSort";
 import { quickSort } from "./quickSort";
 import { radixSort } from "./radixSort";
 import { selectionSort } from "./selectionSort";
+import { shellSort, shellSort2 } from "./shellSort";
 
 const bigArray = DataGenerator.getArrData({ size: 5000 });
 
@@ -32,6 +33,8 @@ const table = [
   toLogger(radixSort),
   toLogger(pigeonholeSort),
   toLogger(bucketSort),
+  toLogger(shellSort),
+  toLogger(shellSort2),
 ];
 
 Logger.table(table);
